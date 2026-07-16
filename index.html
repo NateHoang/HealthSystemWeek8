@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Week 8.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="week-8">Week 8</h1>
+<h2 id="page-1">Page 1</h2>
+<ol>
+<li>Hello again. I am Paul Glassman, Professor and Associate Dean for Research and Community Engagement at the College of Dental Medicine at California Northstate University.</li>
+</ol>
+<h2 id="page-2">Page 2</h2>
+<ol>
+<li>We talked earlier about the notion of Disruptive Innovation as described by Dr. Clayton Christensen. We showed that the traditional dental care industry is following a pattern exhibited by many other industries that ultimately open the marketplace to innovation. In the oral health industry, we have seen fabulous new products and services developed that have turned out to be to sophisticated, expensive, and difficult to access for most people in the country.</li>
+<li>This has resulted in a decrease in the per capita utilization of dental care, per capita spending, and barriers to utilization particularly among low income and diverse populations.</li>
+</ol>
+<h2 id="page-3">Page 3</h2>
+<ol>
+<li>We also talked, however, about the fact that there are a whole new set of developing opportunities for the dental industry and for individual dentists.</li>
+<li>In this module we will describe a few of these innovations and suggest some ways that you can be involved and take advantage of them in the coming decades.</li>
+</ol>
+<h2 id="page-4">Page 4</h2>
+<ol>
+<li>One trend you should be aware of is the dramatic rise of group entities delivering dental care. This chart shows the precent growth in what is referred to here as “dental establishments” separated by the number of employees. It is clear that there was little growth in smaller sized establishments ranging from dental offices with 0-4 employees, even up to those with 499 employees. The most dramatic growth was in those establishments with more than 500 employees.</li>
+</ol>
+<h2 id="page-5">Page 5</h2>
+<ol>
+<li>This data from the American Dental Association’s Health Policy Institute does not describe all large dental entities but is specific to dental service organizations. You can see that the number of dentists affiliated with these organizations varies widely across different states, with an average in 2022 of 10.4% of dentists being affiliated with a dental service organization.</li>
+</ol>
+<h2 id="page-6">Page 6</h2>
+<ol>
+<li>Other data from the American Dental Association’s Health Policy Institute shows the decline in dentists working in solo private practices, with that percentage dipping below 50% for the first time in 2021.</li>
+</ol>
+<h2 id="page-7">Page 7</h2>
+<ol>
+<li>We also know that the decline in dentists owning their own practice has been steeper among younger dentists. In 2005, about one quarter of recent dental graduates owned their own practice soon after graduation from dental school. In 2021 that number was under 10%.</li>
+<li>We will talk further in this module about these trends and what they mean for the dental industry and for individual dentists. However, it is not too soon for you to think about these trends in terms of the opportunities you may have in your career.</li>
+</ol>
+<h2 id="page-8">Page 8</h2>
+<ol>
+<li>Let’s return now to the analysis of the disruptive innovation trends and evolving employment opportunities for dentists, and present and describe a vision for the future of the oral health industry, labeled here as the “Golden Rings.”</li>
+</ol>
+<h2 id="page-9">Page 9</h2>
+<ol>
+<li>This vision centers around the idea that trends and opportunities in a changing oral health industry will primarily be driven by trends and innovations related to measurement and payment systems, advances in prevention and behavior science, and innovations in delivery systems. We explore these each briefly, separately.</li>
+</ol>
+<h2 id="page-10">Page 10</h2>
+<ol>
+<li>The first of these “rings” is the evolution of measurement and payment systems being driven by the goal to produce better value from oral health activities.</li>
+</ol>
+<h2 id="page-11">Page 11</h2>
+<ol>
+<li>There are many groups very hard at work now that are developing measures for performance of oral health providers and delivery systems. Some of these, listed on the slide, include the American Dental Association’s Dental Quality Alliance. This group has been developing, testing, and publishing measures that can be used by providers, benefits companies, public payers, and others to measure outputs from dental care activities.</li>
+<li>In addition, entities that pay for dental services, are also very interested in improving the value of those services. Measures and payment mechanisms that reward value are being developed, and in some cases already in place, by dental benefit companies and public payers of dental care.</li>
+</ol>
+<h2 id="page-12">Page 12</h2>
+<ol>
+<li>One critical thing to keep in mind, is the fact that many measurement and incentive programs are beginning to look at the oral health of populations as opposed to just the oral health of people who seek services at a specific clinical office.</li>
+<li>Many dentists, on hearing this, are concerned that they do not have the ability to affect the health of any population groups beyond those individuals who they directly treat in their office or clinic. As I hope you understand by the time we finish this module, there are mechanisms available now that do allow providers and provider entities to improve and maintain the oral health of population groups, as opposed to only having an impact on people who physically seek dental care in a dental office or clinic.</li>
+</ol>
+<h2 id="page-13">Page 13</h2>
+<ol>
+<li>The next “ring” in the vision is the understanding and availability of modern prevention and behavior support science. Will begin with modern oral health prevention techniques and materials.</li>
+</ol>
+<h2 id="page-14">Page 14</h2>
+<ol>
+<li>This summary slide lists a number of techniques and materials that have become available for oral health providers in the last several decades. These include techniques for remineralization, buffering agents, caries resting medications, and sealing caries. Also listed on the slide are a number of techniques and materials in development, all of which employ non-surgical approaches to improving and maintaining oral health.</li>
+</ol>
+<h2 id="page-15">Page 15</h2>
+<ol>
+<li>Some examples of nonsurgical techniques include Fluoride varnish, which can remineralize beginning decay, or demineralization, with a simple application using a small brush.</li>
+<li>We also have available, now, Silver Diamine Fluoride, one drop of which will stop the progression, at least temporarily, of dental caries once there is an actual loss of tooth structure or a hole in the tooth.</li>
+</ol>
+<h2 id="page-16">Page 16</h2>
+<ol>
+<li>We also have available dental sealants. Dental sealants are not new, having been developed over 50 years ago. However, initially the idea was that sealants would fill up the grooves in the chewing services of teeth so that decay would not start. It was generally accepted that you would not place a sealant on a tooth where decay was suspected, or already verified as having started. Now it is clear that modern sealant materials will stop the progression of decay, even if it is already present. Essentially, the sealant material, isolates the bacteria involved in the dental caries process, and literally “starves them to death.”</li>
+<li>Finally, we have a technique called placement of Interim Therapeutic Restorations (ITR), which involves cleaning out soft material from a small to moderate size hole in the tooth, not needing to move all the decay, and sealing whatever is left with a modern adhesive restorative material. These restorations are placed with no local anesthetic injections and no drilling, and in certain cases can last as long as conventional restorations.</li>
+</ol>
+<h2 id="page-17">Page 17</h2>
+<ol>
+<li>The other part of this ring is the application of modern behavior support science.</li>
+</ol>
+<h2 id="page-18">Page 18</h2>
+<ol>
+<li>First, let’s spend a minute with this idea that the most prevalent dental diseases, dental caries and periodontal disease, are in fact chronic diseases. Chronic diseases are those diseases that do not have a “cure” but can be “managed” through a combination of medications, patient behavior support, and periodic follow-up.</li>
+<li>The oral health industry has tended to focus on acute care surgical interventions for dental caries and periodontal disease. However, many people are now beginning to realize that these diseases are, in fact, chronic diseases, that there are well worked out systems referred to as “chronic disease management” in use for many medical chronic diseases, and that we need to incorporate those management techniques in oral health care and improvement systems.</li>
+</ol>
+<h2 id="page-19">Page 19</h2>
+<ol>
+<li>Let’s use this example. Someone comes into a dental office with a hole in the tooth. The hole is a result of the dental caries disease process. The dentist uses a surgical technique to repair the hole in the tooth with the placement of a restoration. We call this restoration “treatment”, and dental payment systems are set up to pay for this type of “treatment”.</li>
+<li>However, it is important to ask whether this “treatment” has cured the dental caries disease, which was the cause of the hole in the tooth. Typically, the answer is no.</li>
+<li>Therefore, there is now increased interest in incorporating the idea that we are, in fact, dealing with chronic diseases and we need to start incorporating concepts of chronic disease management, including focusing on and paying for, the underlying conditions as opposed to the approach of focusing on repairing the damage from those conditions.</li>
+</ol>
+<h2 id="page-20">Page 20</h2>
+<ol>
+<li>We know that dental diseases are among the most preventable of all diseases. In fact, most people could prevent the primary dental diseases, dental caries and periodontal disease by developing specific habits that they follow every day. These habits primarily relate to, what I call “daily mouth care”, which is primarily plaque removal, ensuring the presence of oral buffering agents with either naturally occurring saliva or supplemental measures.</li>
+<li>Daily math care also includes having a “mouth healthy diet”. This includes reductions in the intake of fermentable carbohydrates and acidic foods and drinks, and attention to not only the quantity but the frequency of intake of these foods and drinks.</li>
+</ol>
+<h2 id="page-21">Page 21</h2>
+<ol>
+<li>This slide explores some things we know about supporting the adoption of “Mouth Healthy Habits.”</li>
+<li>First, we know that people are more likely to change behavior and adopt some new habit, if the person delivering information about that habit is seen as a trusted and culturally congruent member of their own community. That means that the individual is seen as someone who has the same or similar life challenges that they do, that understands their daily struggles, and that speaks, listens, and interprets information in a way similar to the way they do.</li>
+<li>There is data indicating that people think that dental professionals are smart, and have a lot of information, but also may not understand their lives. Therefore, they may be less likely to make changes based on information provided by oral health professionals, than they would be by information provided by peer counselors, or someone seen as a trusted and culturally congruent member of their own community.</li>
+</ol>
+<h2 id="page-22">Page 22</h2>
+<ol>
+<li>We have now talked about two out of the three “golden rings”. The third one is delivery systems which refers to the activities and organizations needed to actually reach people who are not getting dental care on a regular basis or not getting it all. We’ll focus this topic on the use of teledentistry supported systems to reach people who don’t normally access traditional dental care systems.</li>
+</ol>
+<h2 id="page-23">Page 23</h2>
+<ol>
+<li>At the beginning of the COVID-19 pandemic, most providers that were using teledentistry used simple applications such as advice and referral systems depicted here. Patents could send a photograph of a problem using their cell phone and the dentist could review it and provide some advice, either by email, a phone call, or a real time video call. Often the advice was to make an appointment and come into the dental office or clinic for any actual care.</li>
+</ol>
+<h2 id="page-24">Page 24</h2>
+<ol>
+<li>There has also been the development of the “Call Center” approach. Some companies have developed web sites where an individual can pay some money, maybe upload some records or photographs, and get connected to a dentist for a real time video conversation. As with the advice and referral system on the previous slide, often the result of this interaction is advice to the patient to make an appointment in a dental office.</li>
+</ol>
+<h2 id="page-25">Page 25</h2>
+<ol>
+<li>While the ability to share records between dental offices and providers is not new, the advances in software and connectivity have made it easier to do so by transferring electronic records.</li>
+</ol>
+<h2 id="page-26">Page 26</h2>
+<ol>
+<li>Another use of teledentistry, which is starting to be recognized, is the ability to use systems that enable office-based practices to interact with their patients prior to and after a dental appointment. Offices can use these systems, sometimes through a patient portal, to have patients update demographic, payment and health history information prior to an appointment. They can talk to the patient about the procedures that will be performed and answer any questions or obtain consent prior to the visit.</li>
+<li>After a visit, offices can use these systems to conduct post-appointment check-ins with patients, or even conduct recall examinations.</li>
+<li>All of these actions can reduce the time that people spend in the office, reduce the need for personal protective equipment (PPE), and generally make the office more efficient.</li>
+</ol>
+<h2 id="page-27">Page 27</h2>
+<ol>
+<li>Once an office has installed a full teledentistry system and developed the experience and expertise in using it, it opens the possibility of using that system to engage people in the community who may not be patients of that office. As we discussed earlier, there are many people in the community who need dental care and are not getting it. These include children in pre-schools and schools, individuals in living in congregate living settings, people who access other kinds of services at community centers, people in business locations, and seniors who may be in assisted living or nursing care facilities.</li>
+</ol>
+<h2 id="page-28">Page 28</h2>
+<ol>
+<li>Offices can connect with and engage people in community settings in a variety of ways. One way, referred to here as a “limited care” system, uses allied oral health professionals like dental hygienists to go to community sites and perform some procedures such as screenings or Fluoride applications or school-sealant programs. Then everyone is referred to the dental office for a full examination and treatment.</li>
+</ol>
+<h2 id="page-29">Page 29</h2>
+<ol>
+<li>Another way to connect with the community is referred to here as a “full service care” system. In these systems allied oral health personnel, like dental hygienists and/or dental assistants, deliver services in community sites. However, as opposed to “limited care” systems, the objective is to keep as many people healthy in the community site as possible and refer as few people as possible to the dental office. The community site becomes the primary care location where diagnostic, prevention, and early intervention procedures are performed. The dental office is the advanced surgical suite where complex care that cannot be performed in the community is performed. Ongoing care takes place in the community site.</li>
+<li>This is the opposite of most dental care systems where the emphasis is on getting people in to the office as opposed to keeping them healthy in the community and minimizing the use of care in the office.</li>
+</ol>
+<h2 id="page-30">Page 30</h2>
+<ol>
+<li>Also in development now are teledentstry networks where providers and community sites will be able to be linked together in a way that facilitates referral and cooperation among many locations and services.</li>
+</ol>
+<h2 id="page-31">Page 31</h2>
+<ol>
+<li>I have been referring to these developments as the emergence of Community Engaged Oral Health Systems. In these systems the dental office is an important component, but the primary location of diagnostic, preventive, and early intervention services is outside of the dental office, in community sites. Dentists have an important role in these systems in providing diagnostic services and advanced services, but allied oral health professionals and community organizations also have important roles.</li>
+</ol>
+<h2 id="page-32">Page 32</h2>
+<ol>
+<li>One example of a Community Engaged Oral Health System is called the Virtual Dental Home. This is a system which I and others first developed and tested several decades ago. The term Virtual Dental Home refers to the fact that this system provides all of the services included in the “health home” concept. That incudes tracking people to make sure they don’t get lost in our complicated health care systems. It includes making sure people get all the services they need. It includes giving people the knowledge they need and supporting them in managing their own disease.</li>
+<li>The Virtual Dental Home provides all these aspects of the Health Home concept, but does this in a geographically distributed, telehealth-connected team, environment.</li>
+</ol>
+<h2 id="page-33">Page 33</h2>
+<ol>
+<li>The Virtual Dental Home system primarily uses what is called asynchronous store-and-forward telehealth systems. This slide lists a classification system for what are called telehealth modalities. We talked previously about different uses of telehealth. This classification system is more about the types of technology. As you can see, the first modality listed is live video which is also referred to as synchronous telehealth.</li>
+<li>The second is called “Store-And-Forward” or asynchronous telehealth. This refer to a system where records are collected in one location and reviewed by a provider at anther location and at a later time.</li>
+<li>Next is Remote Patient Monitoring which refers to monitoring devices like portable EKG monitors or toothbrushes that monitor the timing, frequency, and effectiveness of toothbrushing.</li>
+</ol>
+<h2 id="page-34">Page 34</h2>
+<ol>
+<li>There are a variety of structures that can be used in the Virtual Dental Home idea. Here we see a dental hygienist and a dental assistant with their portable equipment. This equipment can be easily packed into the trunk of a car and is easily set up at a community site. This allow them to be in one location one day and another location the next day.</li>
+</ol>
+<h2 id="page-35">Page 35</h2>
+<ol>
+<li>The equipment does not take up very much space. This team has set up in a Head Start pre-school by just moving a book shelf slightly. They are not providing a full array of dental services so the equipment needs are fairly minimal.</li>
+</ol>
+<h2 id="page-36">Page 36</h2>
+<ol>
+<li>In this slide you can see the dental hygienist taking radiographs using a portable dental x-ray unit and a digital sensor plugged in to the laptop computer in the background.</li>
+</ol>
+<h2 id="page-37">Page 37</h2>
+<ol>
+<li>Here she is taking photographs. Again, the images are going into the laptop computer.</li>
+</ol>
+<h2 id="page-38">Page 38</h2>
+<ol>
+<li>The community team is creating a fully populated electronic record for the patient. This includes radiographic and photographic images, charting, health history, consent, and progress notes. These are all the same documentation that would be included in a dental record in an office-based electronic health record (EHR) system.</li>
+</ol>
+<h2 id="page-39">Page 39</h2>
+<ol>
+<li>The records collected by the team of allied oral health personnel in the community are uploaded, in most cases in real time, to a cloud-based record system. The program dentist is able to access those records from another location, usually their dental office. In many cases the dentist can complete full examination and treatment plan and decide if the patient can have all the treatment procedures they need performed in the community by the dental hygienist or if they need some more advanced or complex procedures that need to be performed in the dental office. It turns out that the majority of people, especially children can have all of their dental needs met in community locations without the need for a trip to a dental office.</li>
+</ol>
+<h2 id="page-40">Page 40</h2>
+<ol>
+<li>Procedures that can be performed by dental hygienists in community sites include typical dental hygiene procedures like fluoride application, teeth cleanings, and sealants.</li>
+</ol>
+<h2 id="page-41">Page 41</h2>
+<ol>
+<li>In California and many other states, it also includes placement of Silver Diamine Fluoride. One drop can stop the progression of decay for many months.</li>
+</ol>
+<h2 id="page-42">Page 42</h2>
+<ol>
+<li>Also in California and some other states, dental hygienists can place Interim Therapeutic Restorations (ITR). These are restorations placed with no need for local anesthetics and no drilling, It simply involves using hand instrumentation to clean out soft material from the cavity in a tooth and bondng a Glass-Ionomer restorative material in the cavity.</li>
+<li>This photograph is of a tooth of a low-income child who typically does not get any dental care until this small hole turns into a bigger hole. The child is then is likely to be in school with a toothache and not learning, or end up in an emergency room with an infection or at least need much more extensive treatment than is needed now.</li>
+</ol>
+<h2 id="page-43">Page 43</h2>
+<ol>
+<li>In a few minutes, again with no need for local anesthetic injections or drilling, this tooth is restored in a way can last for many years.</li>
+</ol>
+<h2 id="page-44">Page 44</h2>
+<ol>
+<li>We did a six-year demonstration of the Virtual Dental Home system in 13 communities and 50 sites across California from 2008 to 2014. The demonstration had dental hygienists placing over 1000 ITRs and performing over 50,000 total procedures.</li>
+</ol>
+<h2 id="page-45">Page 45</h2>
+<ol>
+<li>We were able to clearly demonstrate the ability to make telehealth-connected teams work.</li>
+</ol>
+<h2 id="page-46">Page 46</h2>
+<ol>
+<li>In addition to making telehealth-connected teams work, the Virtual Dental Home (VDH) system demonstrated some other important outcomes:</li>
+<li>• The majority of people could be kept and verified healthy on-site. “Verified” is an important word in that sentence because it means that the dentist reviewing remote records was able to determine that the individual was heathy at that point or could have all the procedures they needed performed by the dental hygienist without needing to make a trip to a dental office.</li>
+<li>• In fact, about 2/3 of children in the system had all their needed services completed by dental hygienist. This demonstration was performed prior to the availability of Silver Diamine Fluoride. We are now estimating that 80-85% of children can be kept heathy at school without needing to make a trip to a dental office.</li>
+</ol>
+<h2 id="page-47">Page 47</h2>
+<ol>
+<li>This presentation has described a vision for oral health, made likely by the view that current oral health systems are poised for disruptive innovation and being driven by the factors described here as the “Golden Rings”, advances in measurement and payment systems, prevention and behavior support science, and teledentistry supported delivery systems.</li>
+</ol>
+
+</body>
+</html>
